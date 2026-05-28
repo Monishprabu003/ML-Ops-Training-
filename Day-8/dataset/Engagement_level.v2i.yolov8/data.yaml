@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 3
+names: ['confident', 'nervous', 'average']
+
+roboflow:
+  workspace: indian-institute-of-technology-indore-kbon5
+  project: engagement_level
+  version: 2
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/indian-institute-of-technology-indore-kbon5/engagement_level/dataset/2
