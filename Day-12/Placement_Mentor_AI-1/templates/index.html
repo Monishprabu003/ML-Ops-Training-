@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Mentor AI — Predict Your Placement Score</title>
+    <meta name="description" content="AI-powered placement readiness prediction and interview behaviour analysis for students. Get personalized recommendations to improve your placement score.">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dark-theme">
+    <!-- Navigation -->
+    <nav class="top-nav">
+        <a href="/" class="nav-brand">PlacementMentorAI</a>
+        <ul class="nav-links">
+            <li><a href="/" class="active"><i class="bi bi-graph-up me-1"></i>Placement Score</a></li>
+            <li><a href="/interview"><i class="bi bi-camera-video me-1"></i>Interview Analysis</a></li>
+        </ul>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <div class="card glass-card p-5">
+                    <div class="text-center mb-5">
+                        <h1 class="fw-bold gradient-text display-4 mb-3">Placement Mentor AI</h1>
+                        <p class="text-muted fs-5">Predict your placement score and get personalized recommendations powered by ML.</p>
+                    </div>
+
+                    <form action="/predict" method="POST" id="predictionForm">
+                        <!-- Academic & Experience Section -->
+                        <div class="section-container mb-5">
+                            <h4 class="mb-4 text-light border-bottom border-secondary pb-2">
+                                <i class="bi bi-mortarboard-fill me-2 text-primary"></i> Academic & Experience
+                            </h4>
+                            <div class="row g-4">
+                                <div class="col-md-4">
+                                    <label for="CGPA" class="form-label">CGPA</label>
+                                    <input type="number" step="0.01" min="0" max="10" class="form-control" id="CGPA" name="CGPA" placeholder="e.g. 8.5" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="Projects_Count" class="form-label">Projects Count</label>
+                                    <input type="number" min="0" max="50" class="form-control" id="Projects_Count" name="Projects_Count" placeholder="e.g. 3" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="Certifications_Count" class="form-label">Certifications Count</label>
+                                    <input type="number" min="0" max="50" class="form-control" id="Certifications_Count" name="Certifications_Count" placeholder="e.g. 2" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Technical Skills Section -->
+                        <div class="section-container mb-5">
+                            <h4 class="mb-4 text-light border-bottom border-secondary pb-2">
+                                <i class="bi bi-code-square me-2 text-primary"></i> Technical Skills (Rate 1-10)
+                            </h4>
+                            <div class="row g-4">
+                                <div class="col-md-3">
+                                    <label for="Python_Skill" class="form-label">Python</label>
+                                    <input type="number" min="1" max="10" class="form-control" id="Python_Skill" name="Python_Skill" placeholder="1-10" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="Java_Skill" class="form-label">Java</label>
+                                    <input type="number" min="1" max="10" class="form-control" id="Java_Skill" name="Java_Skill" placeholder="1-10" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="SQL_Skill" class="form-label">SQL</label>
+                                    <input type="number" min="1" max="10" class="form-control" id="SQL_Skill" name="SQL_Skill" placeholder="1-10" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="DSA_Skill" class="form-label">DSA</label>
+                                    <input type="number" min="1" max="10" class="form-control" id="DSA_Skill" name="DSA_Skill" placeholder="1-10" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="Web_Development_Skill" class="form-label">Web Dev</label>
+                                    <input type="number" min="1" max="10" class="form-control" id="Web_Development_Skill" name="Web_Development_Skill" placeholder="1-10" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="Cloud_Skill" class="form-label">Cloud</label>
+                                    <input type="number" min="1" max="10" class="form-control" id="Cloud_Skill" name="Cloud_Skill" placeholder="1-10" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="ML_Skill" class="form-label">Machine Learning</label>
+                                    <input type="number" min="1" max="10" class="form-control" id="ML_Skill" name="ML_Skill" placeholder="1-10" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="Cybersecurity_Skill" class="form-label">Cybersecurity</label>
+                                    <input type="number" min="1" max="10" class="form-control" id="Cybersecurity_Skill" name="Cybersecurity_Skill" placeholder="1-10" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Soft Skills & Aptitude Section -->
+                        <div class="section-container mb-4">
+                            <h4 class="mb-4 text-light border-bottom border-secondary pb-2">
+                                <i class="bi bi-person-fill-gear me-2 text-primary"></i> Soft Skills & Aptitude
+                            </h4>
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <label for="Aptitude_Score" class="form-label">Aptitude Score (1-100)</label>
+                                    <input type="number" min="1" max="100" class="form-control" id="Aptitude_Score" name="Aptitude_Score" placeholder="Score (e.g. 85)" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="Communication_Skill" class="form-label">Communication (1-10)</label>
+                                    <input type="number" min="1" max="10" class="form-control" id="Communication_Skill" name="Communication_Skill" placeholder="1-10" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="Problem_Solving_Skill" class="form-label">Problem Solving (1-10)</label>
+                                    <input type="number" min="1" max="10" class="form-control" id="Problem_Solving_Skill" name="Problem_Solving_Skill" placeholder="1-10" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="Confidence_Level" class="form-label">Confidence Level (1-10)</label>
+                                    <input type="number" min="1" max="10" class="form-control" id="Confidence_Level" name="Confidence_Level" placeholder="1-10" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-grid mt-5">
+                            <button type="submit" class="btn btn-primary btn-lg pulse-btn py-3 fs-5">
+                                <i class="bi bi-lightning-charge-fill me-2"></i>Predict Placement Score
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Interview Analysis Link -->
+                    <div class="text-center mt-4">
+                        <a href="/interview" class="btn btn-interview btn-lg px-5 py-3">
+                            <i class="bi bi-camera-video-fill me-2"></i>Analyze Interview Behaviour
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+# ─────────────────────────────────────────
+# PlacementMentorAI - Docker Compose
+# ─────────────────────────────────────────
+version: '3.8'
+
+services:
+  placementmentorai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: placementmentorai
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./cv_module/outputs:/app/cv_module/outputs
+      - ./cv_module/models:/app/cv_module/models
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=production
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    # Increase shared memory for PyTorch model loading
+    shm_size: '2gb'
+    # Resource limits (adjust based on your server)
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+        reservations:
+          memory: 4G

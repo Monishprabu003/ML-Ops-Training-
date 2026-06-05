@@ -1,0 +1,402 @@
+/* ═══════════════════════════════════════════
+   PlacementMentorAI — Design System
+   Dark Glassmorphism Theme
+   ═══════════════════════════════════════════ */
+
+:root {
+    --bg-dark: #0f172a;
+    --bg-darker: #080e1e;
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --accent-green: #34d399;
+    --accent-cyan: #22d3ee;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --border-hover: rgba(255, 255, 255, 0.2);
+}
+
+/* ─────────────────────────────────────────
+   Base
+   ───────────────────────────────────────── */
+body.dark-theme {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    background-image: 
+        radial-gradient(at 40% 20%, hsla(228,100%,74%,0.1) 0px, transparent 50%),
+        radial-gradient(at 80% 0%, hsla(189,100%,56%,0.1) 0px, transparent 50%),
+        radial-gradient(at 0% 50%, hsla(355,100%,93%,0.1) 0px, transparent 50%);
+    background-attachment: fixed;
+}
+
+/* ─────────────────────────────────────────
+   Navigation
+   ───────────────────────────────────────── */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-brand {
+    font-size: 1.25rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #60a5fa 0%, #34d399 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+    padding: 0.5rem 0;
+    position: relative;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--text-main);
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(135deg, #60a5fa, #34d399);
+    border-radius: 2px;
+}
+
+/* ─────────────────────────────────────────
+   Cards & Containers
+   ───────────────────────────────────────── */
+.glass-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border-radius: 1.5rem;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #60a5fa 0%, #34d399 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-container {
+    background: rgba(15, 23, 42, 0.3);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ─────────────────────────────────────────
+   Forms
+   ───────────────────────────────────────── */
+.form-label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.form-control {
+    background-color: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    background-color: rgba(15, 23, 42, 0.9);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
+    color: var(--text-main);
+}
+
+.form-control::placeholder {
+    color: #475569;
+}
+
+/* ─────────────────────────────────────────
+   Buttons
+   ───────────────────────────────────────── */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, #2dd4bf 100%);
+    border: none;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.4);
+}
+
+.btn-interview {
+    background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+    border: none;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-interview:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.4);
+    color: white;
+}
+
+/* ─────────────────────────────────────────
+   Result Boxes
+   ───────────────────────────────────────── */
+.result-box {
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.result-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    background: rgba(15, 23, 42, 0.6);
+}
+
+/* ─────────────────────────────────────────
+   Interview Analysis — Upload Area
+   ───────────────────────────────────────── */
+.upload-area {
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.upload-area:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.upload-area.dragover {
+    border-color: #0d6efd;
+    background: rgba(13, 110, 253, 0.1);
+}
+
+/* ─────────────────────────────────────────
+   Interview Analysis — Behaviour Badges
+   ───────────────────────────────────────── */
+.behaviour-badge {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border-radius: 25px;
+    margin: 10px 0;
+    display: inline-block;
+    font-weight: 600;
+}
+
+.behaviour-confident {
+    background: linear-gradient(135deg, #059669, #34d399);
+    color: white;
+}
+
+.behaviour-nervous {
+    background: linear-gradient(135deg, #d97706, #fbbf24);
+    color: #1a1a2e;
+}
+
+.behaviour-distracted {
+    background: linear-gradient(135deg, #dc2626, #f87171);
+    color: white;
+}
+
+/* ─────────────────────────────────────────
+   Interview Analysis — Feature Cards
+   ───────────────────────────────────────── */
+.feature-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 12px 15px;
+    margin: 8px 0;
+    transition: background 0.2s ease;
+}
+
+.feature-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* ─────────────────────────────────────────
+   Loading Overlay
+   ───────────────────────────────────────── */
+.loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.loading-overlay .spinner-border {
+    width: 4rem;
+    height: 4rem;
+    border-width: 4px;
+    color: var(--primary);
+}
+
+.loading-text {
+    color: var(--text-main);
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    font-weight: 500;
+}
+
+.loading-subtext {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+/* ─────────────────────────────────────────
+   Alerts
+   ───────────────────────────────────────── */
+.alert-danger {
+    background: rgba(220, 38, 38, 0.15);
+    border: 1px solid rgba(220, 38, 38, 0.3);
+    color: #fca5a5;
+    border-radius: 0.75rem;
+}
+
+.alert-danger .btn-close {
+    filter: invert(1);
+}
+
+/* ─────────────────────────────────────────
+   Progress Bars
+   ───────────────────────────────────────── */
+.progress {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.progress-bar-custom {
+    height: 25px;
+    font-weight: 600;
+    transition: width 0.8s ease;
+}
+
+/* ─────────────────────────────────────────
+   Tabs (Interview Analysis)
+   ───────────────────────────────────────── */
+.nav-tabs {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav-tabs .nav-link {
+    color: var(--text-muted);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.nav-tabs .nav-link:hover {
+    color: var(--text-main);
+    border: none;
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--primary);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--primary);
+}
+
+/* ─────────────────────────────────────────
+   Animations
+   ───────────────────────────────────────── */
+.pulse-btn {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(59, 130, 246, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* ─────────────────────────────────────────
+   Responsive
+   ───────────────────────────────────────── */
+@media (max-width: 768px) {
+    .top-nav {
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 1rem;
+    }
+    
+    .nav-links {
+        gap: 1rem;
+    }
+    
+    .upload-area {
+        padding: 25px;
+    }
+}

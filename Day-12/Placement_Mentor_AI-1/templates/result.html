@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result | Placement Mentor AI</title>
+    <meta name="description" content="Your personalized placement score prediction results with skill analysis and recommendations.">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dark-theme">
+    <!-- Navigation -->
+    <nav class="top-nav">
+        <a href="/" class="nav-brand">PlacementMentorAI</a>
+        <ul class="nav-links">
+            <li><a href="/"><i class="bi bi-graph-up me-1"></i>Placement Score</a></li>
+            <li><a href="/interview"><i class="bi bi-camera-video me-1"></i>Interview Analysis</a></li>
+        </ul>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card glass-card p-5">
+                    <div class="text-center mb-5">
+                        <h2 class="fw-bold gradient-text mb-2 display-5">Your Placement Analysis</h2>
+                        <p class="text-muted fs-5">Here are your personalized insights</p>
+                    </div>
+
+                    <div class="row mb-4 text-center g-4">
+                        <div class="col-md-6">
+                            <div class="result-box p-4 rounded-4 h-100 d-flex flex-column justify-content-center">
+                                <h5 class="text-secondary mb-3"><i class="bi bi-graph-up-arrow me-2"></i>Predicted Score</h5>
+                                <h1 class="display-3 fw-bold text-primary m-0">{{ prediction }}%</h1>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="result-box p-4 rounded-4 h-100 d-flex flex-column justify-content-center">
+                                <h5 class="text-secondary mb-3"><i class="bi bi-award me-2"></i>Status</h5>
+                                <h3 class="fw-bold m-0 {% if prediction >= 80 %}text-success{% elif prediction >= 60 %}text-warning{% else %}text-danger{% endif %}">
+                                    {{ status }}
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4 result-box p-4 rounded-4 text-center">
+                        <h4 class="text-light mb-3"><i class="bi bi-briefcase-fill me-2 text-info"></i> Suggested Role</h4>
+                        <p class="display-6 text-info mb-0 fw-semibold">{{ role }}</p>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="result-box p-4 rounded-4 h-100">
+                                <h4 class="mb-4 text-warning border-bottom border-secondary pb-2">
+                                    <i class="bi bi-exclamation-triangle-fill me-2"></i>Weak Areas
+                                </h4>
+                                <ul class="list-unstyled">
+                                    {% for area in weak_areas %}
+                                    <li class="mb-3 text-light fs-5">
+                                        <i class="bi bi-arrow-right-short text-warning"></i> {{ area }}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="result-box p-4 rounded-4 h-100">
+                                <h4 class="mb-4 text-success border-bottom border-secondary pb-2">
+                                    <i class="bi bi-lightbulb-fill me-2"></i>Recommended Learning
+                                </h4>
+                                <ul class="list-unstyled">
+                                    {% for rec in recommendations %}
+                                    <li class="mb-3 text-light">
+                                        <i class="bi bi-check-circle-fill text-success me-2"></i> {{ rec }}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-5">
+                        <div class="d-flex justify-content-center gap-3 flex-wrap">
+                            <a href="/" class="btn btn-outline-light btn-lg px-5 py-3 rounded-pill">
+                                <i class="bi bi-arrow-left me-2"></i> Analyze Another Profile
+                            </a>
+                            <a href="/interview?placement_score={{ prediction }}" class="btn btn-interview btn-lg px-5 py-3 rounded-pill">
+                                <i class="bi bi-camera-video-fill me-2"></i> Proceed to Interview Analysis
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
