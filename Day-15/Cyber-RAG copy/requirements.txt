@@ -1,0 +1,25 @@
+# Cyber Security RAG Application - Requirements
+# Python 3.12+
+
+# Web Framework
+streamlit==1.32.0
+
+# LLM & RAG Framework
+langchain==0.1.14
+langchain-community==0.0.34
+langchain-text-splitters==0.0.1
+langchain-chroma==0.1.1
+langchain-huggingface==0.0.1
+
+# Vector Database & Embeddings
+chromadb==0.4.24
+sentence-transformers==2.2.2
+
+# PDF Processing
+pypdf==4.0.1
+
+# LLM Integration
+ollama==0.1.24
+
+# Utilities
+python-dotenv==1.0.0
